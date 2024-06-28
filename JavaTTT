@@ -1,14 +1,19 @@
+
 import java.util.*;
 
 public class JavaTTT {
 
 	static String[] board;
 	static String turn;
-static String checkWinner()
+
+
+	
+	static String checkWinner()
 	{
 		for (int a = 0; a < 8; a++) {
 			String line = null;
-	switch (a) {
+
+			switch (a) {
 			case 0:
 				line = board[0] + board[1] + board[2];
 				break;
@@ -54,7 +59,17 @@ static String checkWinner()
 				return "draw";
 			}
 		}
-static void printBoard()
+
+
+		System.out.println(
+			turn + "'s turn; enter a slot number to place "
+			+ turn + " in:");
+		return null;
+	}
+	
+	
+
+	static void printBoard()
 	{
 		System.out.println("|---|---|---|");
 		System.out.println("| " + board[0] + " | "
@@ -90,7 +105,9 @@ static void printBoard()
 
 		while (winner == null) {
 			int numInput;
-try {
+		
+		
+			try {
 				numInput = in.nextInt();
 				if (!(numInput > 0 && numInput <= 9)) {
 					System.out.println(
@@ -103,7 +120,9 @@ try {
 					"Invalid input; re-enter slot number:");
 				continue;
 			}
-if (board[numInput - 1].equals(
+			
+			
+			if (board[numInput - 1].equals(
 					String.valueOf(numInput))) {
 				board[numInput - 1] = turn;
 
@@ -122,7 +141,18 @@ if (board[numInput - 1].equals(
 					"Slot already taken; re-enter slot number:");
 			}
 		}
-
-
-
-
+	
+		
+		if (winner.equalsIgnoreCase("draw")) {
+			System.out.println(
+				"It's a draw! Thanks for playing.");
+		}
+	
+		else {
+			System.out.println(
+				"Congratulations! " + winner
+				+ "'s have won! Thanks for playing.");
+		}
+	in.close();
+	}
+}
